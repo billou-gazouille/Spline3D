@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SplineFollower : MonoBehaviour
+{
+    [SerializeField] Spline3DMonoBehaviour splineMB;
+    Spline3D spline;
+    [SerializeField] float speed = 0.2f;
+
+    void Start()
+    {
+        spline = splineMB.spline;
+    }
+
+    void Update()
+    {
+        var val = (Time.time * speed) % (spline.controlPoints.Count - 2);
+        var t = Mathf.Clamp(val, 1f, spline.controlPoints.Count - 2);
+        //Debug.Log(t);
+        transform.position = spline.GetPointOnSpline(t);
+    }
+}
