@@ -13,6 +13,8 @@ public class SplineFollower : MonoBehaviour
         spline = splineMB.spline;
     }
 
+    // every frame:
+
     void Update()
     {
         var val = (Time.time * speed) % (spline.controlPoints.Count - 2);
